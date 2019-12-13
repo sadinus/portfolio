@@ -12,15 +12,7 @@ const App: React.FC = () => {
       <Row>
         <Col xs="12" lg={{ span: 8, offset: 2 }}>
           <Header />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
           <Content />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs="12" lg={{ span: 8, offset: 2 }}>
           <Footer />
         </Col>
       </Row>
