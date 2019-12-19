@@ -13,14 +13,15 @@ const mapDispatch = (item: string) => ({
 
 export const Content = () => {
   const setPageY = (event: MouseEvent) => {
-    event.preventDefault();
+    // event.preventDefault();
     // window.scrollTo(0, pageY);
-    console.log(event.pageY);
+    // console.log(event.pageY);
   };
 
   return (
     <div>
       <section id="home" onClick={e => setPageY(e)}>
+        <h1>Home</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
           aperiam maiores doloribus rerum rem vel maxime commodi velit, ipsam
@@ -36,6 +37,7 @@ export const Content = () => {
         </p>
       </section>
       <section id="portfolio" onClick={e => setPageY(e)}>
+        <h1>Portfolio</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
           aperiam maiores doloribus rerum rem vel maxime commodi velit, ipsam
@@ -51,6 +53,7 @@ export const Content = () => {
         </p>
       </section>
       <section id="experience" onClick={e => setPageY(e)}>
+        <h1>Expecience</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
           aperiam maiores doloribus rerum rem vel maxime commodi velit, ipsam
@@ -66,6 +69,7 @@ export const Content = () => {
         </p>
       </section>
       <section id="contact" onClick={e => setPageY(e)}>
+        <h1>Contact</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
           aperiam maiores doloribus rerum rem vel maxime commodi velit, ipsam
