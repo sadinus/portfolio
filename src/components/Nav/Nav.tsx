@@ -1,41 +1,49 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { NavItem } from "../NavItem";
+import styles from "./Nav.module.css";
+import { home, portfolio, experience, contact } from "../../types";
 
-const Nav: FunctionComponent<Props> = ({ id, children }) => {
+const Nav = () => {
   const [activeNavItem, setActiveNavItem] = React.useState("Home");
 
+  const capitalize = (s: string) => {
+    if (typeof s !== "string") return "";
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  };
+
   return (
-    <div className="justify-content-center nav-pills nav-fill mt-4 nav" id={id}>
-      <NavItem
-        href="#home"
-        text="Home"
-        activeItem={activeNavItem}
-        selectNavItem={setActiveNavItem}
-      />
-      <NavItem
-        href="#portfolio"
-        text="Portfolio"
-        activeItem={activeNavItem}
-        selectNavItem={setActiveNavItem}
-      />
-      <NavItem
-        href="#experience"
-        text="Experience"
-        activeItem={activeNavItem}
-        selectNavItem={setActiveNavItem}
-      />
-      <NavItem
-        href="#contact"
-        text="Contact"
-        activeItem={activeNavItem}
-        selectNavItem={setActiveNavItem}
-      />
+    <div className={`sticky-top ${styles.navContainer}`}>
+      <div
+        className={`justify-content-center nav-pills nav-fill nav col-xs-12 col-lg-8 offset-lg-2`}
+        id={"myNav"}
+      >
+        <NavItem
+          href={`#${home}`}
+          text={capitalize(home)}
+          activeItem={activeNavItem}
+          selectNavItem={setActiveNavItem}
+        />
+        <NavItem
+          href={`#${portfolio}`}
+          text={capitalize(portfolio)}
+          activeItem={activeNavItem}
+          selectNavItem={setActiveNavItem}
+        />
+        <NavItem
+          href={`#${experience}`}
+          text={capitalize(experience)}
+          activeItem={activeNavItem}
+          selectNavItem={setActiveNavItem}
+        />
+        <NavItem
+          href={`#${contact}`}
+          text={capitalize(contact)}
+          activeItem={activeNavItem}
+          selectNavItem={setActiveNavItem}
+        />
+      </div>
     </div>
   );
-};
-
-type Props = {
-  id: string;
 };
 
 export default Nav;

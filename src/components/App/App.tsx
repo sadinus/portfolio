@@ -1,21 +1,22 @@
 import React from "react";
-import styles from "./App.module.css";
 import Footer from "../Footer";
 import Content from "../Content";
-import Header from "../Header";
+import Nav from "../Nav";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App: React.FC = () => {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-xs-12 col-lg-8 offset-lg-2">
-          <Header />
-          <Content />
-          <Footer />
+    <>
+      <Nav />
+      <div className="container">
+        <div className="row">
+          <div className="col-xs-12 col-lg-8 offset-lg-2">
+            <Content />
+            <Footer />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

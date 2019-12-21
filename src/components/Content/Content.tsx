@@ -1,15 +1,7 @@
-import React, { MouseEvent, Dispatch } from "react";
-import { connect } from "react-redux";
+import React, { MouseEvent } from "react";
 import { RootState } from "../../reducers";
 import { scrollAction } from "../../actions";
-
-const mapState = (state: RootState) => ({
-  menuItem: state.menuItem
-});
-
-const mapDispatch = (item: string) => ({
-  setMenuItem: scrollAction(item)
-});
+import { home, portfolio, experience, contact } from "../../types";
 
 export const Content = () => {
   const setPageY = (event: MouseEvent) => {
@@ -20,7 +12,7 @@ export const Content = () => {
 
   return (
     <div>
-      <section id="home" onClick={e => setPageY(e)}>
+      <section id={home} onClick={e => setPageY(e)}>
         <h1>Home</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
@@ -36,7 +28,7 @@ export const Content = () => {
           necessitatibus debitis.
         </p>
       </section>
-      <section id="portfolio" onClick={e => setPageY(e)}>
+      <section id={portfolio} onClick={e => setPageY(e)}>
         <h1>Portfolio</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
@@ -52,7 +44,7 @@ export const Content = () => {
           necessitatibus debitis.
         </p>
       </section>
-      <section id="experience" onClick={e => setPageY(e)}>
+      <section id={experience} onClick={e => setPageY(e)}>
         <h1>Expecience</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
@@ -68,7 +60,7 @@ export const Content = () => {
           necessitatibus debitis.
         </p>
       </section>
-      <section id="contact" onClick={e => setPageY(e)}>
+      <section id={contact} onClick={e => setPageY(e)}>
         <h1>Contact</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio

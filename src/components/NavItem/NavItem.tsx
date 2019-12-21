@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./NavItem.module.css";
 
 export const NavItem: React.SFC<Props> = ({
   href,
@@ -11,7 +12,7 @@ export const NavItem: React.SFC<Props> = ({
   return (
     <div className="nav-item">
       <a
-        className={activeClass}
+        className={`nav-link btn btn-outline-primary ${styles.navItem} ${activeClass}`}
         href={href}
         onClick={() => selectNavItem(text)}
       >
