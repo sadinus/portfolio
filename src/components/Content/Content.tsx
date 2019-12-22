@@ -4,15 +4,9 @@ import { scrollAction } from "../../actions";
 import { home, portfolio, experience, contact } from "../../types";
 
 export const Content = () => {
-  const setPageY = (event: MouseEvent) => {
-    // event.preventDefault();
-    // window.scrollTo(0, pageY);
-    // console.log(event.pageY);
-  };
-
   return (
     <div>
-      <section id={home} onClick={e => setPageY(e)}>
+      <section id={home}>
         <h1>Home</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
@@ -28,7 +22,7 @@ export const Content = () => {
           necessitatibus debitis.
         </p>
       </section>
-      <section id={portfolio} onClick={e => setPageY(e)}>
+      <section id={portfolio}>
         <h1>Portfolio</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
@@ -44,7 +38,7 @@ export const Content = () => {
           necessitatibus debitis.
         </p>
       </section>
-      <section id={experience} onClick={e => setPageY(e)}>
+      <section id={experience}>
         <h1>Expecience</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
@@ -60,7 +54,7 @@ export const Content = () => {
           necessitatibus debitis.
         </p>
       </section>
-      <section id={contact} onClick={e => setPageY(e)}>
+      <section id={contact}>
         <h1>Contact</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
