@@ -5,25 +5,43 @@ export const NavItem: React.SFC<Props> = ({
   href,
   text,
   activeItem,
-  setActiveNavItem,
-  navHeight
+  setActiveNavItem
 }) => {
-  const activeClass = activeItem === text ? "active" : "";
+  const [currentSection, setCurrentSection] = React.useState();
+  const isNavItemActive = activeItem === text;
+  const activeClass = isNavItemActive ? "active" : "";
 
-  const setPageY = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    event.preventDefault();
+  React.useEffect(() => {
     const section = document.querySelector(href);
-    const sectionPageY = section?.getBoundingClientRect().top as number;
-    window.scrollTo(0, sectionPageY - navHeight);
-    console.log(event.pageY);
+    setCurrentSection(section);
+  }, [href]);
+
+  // window.addEventListener("scroll", function() {
+  //   if (currentSection.getBoundingClientRect().top < window.innerHeight) {
+  //     currentSection.classList.add("active");
+  //   } else {
+  //     currentSection.classList.remove("active");
+  //   }
+  // });
+
+  const setPageY = () => {
+    const sectionOffsetTop = currentSection ? currentSection.offsetTop : 0;
+    window.scrollTo({
+      top: sectionOffsetTop,
+      behavior: "smooth"
+    });
   };
 
   const selectNavItem = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     text: string
   ) => {
-    setPageY(event);
-    setActiveNavItem(text);
+    event.preventDefault();
+
+    if (!isNavItemActive) {
+      setPageY();
+      setActiveNavItem(text);
+    }
   };
 
   return (
@@ -43,7 +61,6 @@ type Props = {
   href: string;
   text: string;
   activeItem: string;
-  navHeight: number;
   setActiveNavItem: (navItem: string) => void;
 };
 

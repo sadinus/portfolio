@@ -3,6 +3,7 @@ import Footer from "../Footer";
 import Content from "../Content";
 import Nav from "../Nav";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 const App: React.FC = () => {
   return (
