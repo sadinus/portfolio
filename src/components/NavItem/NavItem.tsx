@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./NavItem.module.css";
+import { capitalize } from "../../shared";
 
 export const NavItem: React.SFC<Props> = ({
-  href,
   text,
   activeItem,
   setActiveNavItem
@@ -10,19 +10,12 @@ export const NavItem: React.SFC<Props> = ({
   const [currentSection, setCurrentSection] = React.useState();
   const isNavItemActive = activeItem === text;
   const activeClass = isNavItemActive ? "active" : "";
+  const href = `#${text}`;
 
   React.useEffect(() => {
     const section = document.querySelector(href);
     setCurrentSection(section);
   }, [href]);
-
-  // window.addEventListener("scroll", function() {
-  //   if (currentSection.getBoundingClientRect().top < window.innerHeight) {
-  //     currentSection.classList.add("active");
-  //   } else {
-  //     currentSection.classList.remove("active");
-  //   }
-  // });
 
   const setPageY = () => {
     const sectionOffsetTop = currentSection ? currentSection.offsetTop : 0;
@@ -47,18 +40,18 @@ export const NavItem: React.SFC<Props> = ({
   return (
     <div className="nav-item">
       <a
+        id={`${text}Nav`}
         className={`nav-link btn btn-outline-primary ${styles.navItem} ${activeClass}`}
         href={href}
         onClick={e => selectNavItem(e, text)}
       >
-        {text}
+        {capitalize(text)}
       </a>
     </div>
   );
 };
 
 type Props = {
-  href: string;
   text: string;
   activeItem: string;
   setActiveNavItem: (navItem: string) => void;

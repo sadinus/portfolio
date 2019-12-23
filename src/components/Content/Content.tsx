@@ -1,12 +1,12 @@
 import React, { MouseEvent } from "react";
 import { RootState } from "../../reducers";
 import { scrollAction } from "../../actions";
-import { home, portfolio, experience, contact } from "../../types";
+import { home, portfolio, experience, contact, section } from "../../types";
 
 export const Content = () => {
   return (
     <div>
-      <section id={home}>
+      <section id={home} className={section}>
         <h1>Home</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
@@ -22,7 +22,7 @@ export const Content = () => {
           necessitatibus debitis.
         </p>
       </section>
-      <section id={portfolio}>
+      <section id={portfolio} className={section}>
         <h1>Portfolio</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
@@ -38,7 +38,7 @@ export const Content = () => {
           necessitatibus debitis.
         </p>
       </section>
-      <section id={experience}>
+      <section id={experience} className={section}>
         <h1>Expecience</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
@@ -54,7 +54,7 @@ export const Content = () => {
           necessitatibus debitis.
         </p>
       </section>
-      <section id={contact}>
+      <section id={contact} className={section}>
         <h1>Contact</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
