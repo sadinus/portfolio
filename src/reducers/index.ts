@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import { scrollSpy } from "./scrollSpy";
+import { navReducer } from "./navReducer";
 
 export const rootReducer = combineReducers({
-  menuItem: scrollSpy
+  navigation: navReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

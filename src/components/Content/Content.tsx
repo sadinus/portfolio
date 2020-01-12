@@ -1,13 +1,20 @@
-import React, { MouseEvent } from "react";
-import { RootState } from "../../reducers";
-import { scrollAction } from "../../actions";
-import { home, portfolio, experience, contact, section } from "../../types";
+import React, { Dispatch } from "react";
+import { NavItemName, RootAppState } from "../../types";
+import { connect } from "react-redux";
+import { Section } from "../Section";
+import { MenuActionTypes } from "../../actions/types";
+import { setCurrentSection } from "../../actions";
 
-export const Content = () => {
+const Content = ({
+  activeNavItem,
+  currentSection,
+  setCurrentSection
+}: Props) => {
+  React.useEffect(() => {}, [currentSection]);
+
   return (
-    <div>
-      <section id={home} className={section}>
-        <h1>Home</h1>
+    <>
+      <Section headerText={NavItemName.home}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
           aperiam maiores doloribus rerum rem vel maxime commodi velit, ipsam
@@ -21,9 +28,8 @@ export const Content = () => {
           officia reprehenderit error tenetur quo consequuntur velit illo et
           necessitatibus debitis.
         </p>
-      </section>
-      <section id={portfolio} className={section}>
-        <h1>Portfolio</h1>
+      </Section>
+      <Section headerText={NavItemName.portfolio}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
           aperiam maiores doloribus rerum rem vel maxime commodi velit, ipsam
@@ -37,9 +43,8 @@ export const Content = () => {
           officia reprehenderit error tenetur quo consequuntur velit illo et
           necessitatibus debitis.
         </p>
-      </section>
-      <section id={experience} className={section}>
-        <h1>Expecience</h1>
+      </Section>
+      <Section headerText={NavItemName.experience}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
           aperiam maiores doloribus rerum rem vel maxime commodi velit, ipsam
@@ -53,9 +58,8 @@ export const Content = () => {
           officia reprehenderit error tenetur quo consequuntur velit illo et
           necessitatibus debitis.
         </p>
-      </section>
-      <section id={contact} className={section}>
-        <h1>Contact</h1>
+      </Section>
+      <Section headerText={NavItemName.contact}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
           aperiam maiores doloribus rerum rem vel maxime commodi velit, ipsam
@@ -69,19 +73,32 @@ export const Content = () => {
           officia reprehenderit error tenetur quo consequuntur velit illo et
           necessitatibus debitis.
         </p>
-      </section>
-    </div>
+      </Section>
+    </>
   );
 };
 
 type Props = StateProps & DispatchProps;
 
 type StateProps = {
-  menuItem: string;
+  activeNavItem: NavItemName;
+  currentSection: NavItemName;
 };
 
 type DispatchProps = {
-  setMenuItem(menuItem: string): void;
+  setCurrentSection(section: string): void;
 };
 
-export default Content;
+const mapState = (state: RootAppState) => ({
+  currentSection: state.navigation.currentSection,
+  activeNavItem: state.navigation.activeNavItem
+});
+
+const mapDispatch = (dispatch: Dispatch<MenuActionTypes>) => {
+  return {
+    setCurrentSection: (section: NavItemName) =>
+      dispatch(setCurrentSection(section))
+  };
+};
+
+export default connect(mapState, mapDispatch)(Content);

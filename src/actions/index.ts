@@ -1,8 +1,16 @@
-import { MENU_ITEM_SELECTED, MenuActionTypes } from "./types";
+import { NavItemName } from "./../types/index";
+import { SELECT_NAV_ITEM, MenuActionTypes, SCROLL_TO_SECTION } from "./types";
 
-export const scrollAction = (menuItem: string): MenuActionTypes => {
+export const setActiveNavItem = (navItem: NavItemName): MenuActionTypes => {
   return {
-    type: MENU_ITEM_SELECTED,
-    payload: menuItem
+    type: SELECT_NAV_ITEM,
+    payload: navItem
+  };
+};
+
+export const setCurrentSection = (section: NavItemName): MenuActionTypes => {
+  return {
+    type: SCROLL_TO_SECTION,
+    payload: section
   };
 };

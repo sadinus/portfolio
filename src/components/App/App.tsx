@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../Footer";
-import Content from "../Content";
 import Nav from "../Nav";
+import { Content } from "../Content";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 

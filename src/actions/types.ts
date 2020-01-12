@@ -1,8 +1,14 @@
-export const MENU_ITEM_SELECTED = "MENU_ITEM_SELECTED";
+export const SELECT_NAV_ITEM = "SELECT_NAV_ITEM";
+export const SCROLL_TO_SECTION = "SCROLL_TO_SECTION";
 
-export type ScrollAction = {
-  type: typeof MENU_ITEM_SELECTED;
+export type SelectNavItemAction = {
+  type: typeof SELECT_NAV_ITEM;
   payload: string;
 };
 
-export type MenuActionTypes = ScrollAction;
+export type ScrollToSectionAction = {
+  type: typeof SCROLL_TO_SECTION;
+  payload: string;
+};
+
+export type MenuActionTypes = SelectNavItemAction | ScrollToSectionAction;

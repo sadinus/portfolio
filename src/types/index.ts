@@ -1,9 +1,17 @@
-export const home = "home";
-export const portfolio = "portfolio";
-export const experience = "experience";
-export const contact = "contact";
 export const section = "section";
 
-export type SystemState = {
-  currentMenuItem: string;
+export enum NavItemName {
+  home = "Home",
+  portfolio = "Portfolio",
+  experience = "Experience",
+  contact = "Contact"
+}
+
+export type NavState = {
+  activeNavItem: NavItemName;
+  currentSection: NavItemName;
+};
+
+export type RootAppState = {
+  navigation: NavState;
 };

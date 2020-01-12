@@ -1,75 +1,66 @@
 import React from "react";
 import styles from "./NavItem.module.css";
-import { capitalize } from "../../shared";
+import { NavItemName, RootAppState } from "../../types";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { MenuActionTypes } from "../../actions/types";
+import { setActiveNavItem } from "../../actions";
 
-export const NavItem: React.SFC<Props> = ({
-  text,
-  activeItem,
-  setActiveNavItem
-}) => {
-  const [currentSection, setCurrentSection] = React.useState();
-  const isNavItemActive = activeItem === text;
+const NavItem = ({ itemName, activeNavItem, setActiveNavItem }: Props) => {
+  const isNavItemActive = activeNavItem === itemName;
   const activeClass = isNavItemActive ? "active" : "";
-  const href = `#${text}`;
 
-  React.useEffect(() => {
-    const section = document.querySelector(href);
-    setCurrentSection(section);
-  }, [href]);
+  // const setPageY = () => {
+  //   const sectionOffsetTop = currentSection ? currentSection.offsetTop : 0;
+  //   window.scrollTo({
+  //     top: sectionOffsetTop,
+  //     behavior: "smooth"
+  //   });
+  // };
 
-  const setPageY = () => {
-    const sectionOffsetTop = currentSection ? currentSection.offsetTop : 0;
-    window.scrollTo({
-      top: sectionOffsetTop,
-      behavior: "smooth"
-    });
-  };
-
-  const selectNavItem = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    text: string
-  ) => {
-    event.preventDefault();
-
+  const selectNavItem = () => {
     if (!isNavItemActive) {
-      setPageY();
-      setActiveNavItem(text);
+      // setPageY();
+      setActiveNavItem(itemName);
     }
   };
 
   return (
     <div className="nav-item">
       <a
-        id={`${text}Nav`}
         className={`nav-link btn btn-outline-primary ${styles.navItem} ${activeClass}`}
-        href={href}
-        onClick={e => selectNavItem(e, text)}
+        href="/#"
+        onClick={selectNavItem}
       >
-        {capitalize(text)}
+        {itemName}
       </a>
     </div>
   );
 };
 
-type Props = {
-  text: string;
-  activeItem: string;
-  setActiveNavItem: (navItem: string) => void;
+type Props = StateProps & DispatchProps & OwnProps;
+
+type StateProps = {
+  activeNavItem: NavItemName;
 };
 
-// type OwnProps = {
-//   href: string;
-//   text: string;
-// };
+type OwnProps = {
+  itemName: NavItemName;
+};
 
-// type DispatchProps = {
-//   scrollToSection(): void;
-// };
+type DispatchProps = {
+  setActiveNavItem(navItem: NavItemName): void;
+};
 
-// const mapDispatch = (dispatch: Dispatch<MenuActionTypes>, state: OwnProps) => {
-//   return {
-//     scrollToSection: () => dispatch(scrollAction(state.href))
-//   };
-// };
+const mapState = (state: RootAppState) => ({
+  activeNavItem: state.navigation.activeNavItem
+});
 
-// export default connect(null, null)(NavItem);
+const mapDispatch = (dispatch: Dispatch<MenuActionTypes>, state: OwnProps) => {
+  return {
+    setActiveNavItem: (navItem: NavItemName) =>
+      dispatch(setActiveNavItem(navItem))
+  };
+};
+
+export default connect(mapState, mapDispatch)(NavItem);
