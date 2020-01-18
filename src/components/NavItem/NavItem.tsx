@@ -1,27 +1,32 @@
 import React from "react";
 import styles from "./NavItem.module.css";
-import { NavItemName, RootAppState } from "../../types";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { MenuActionTypes } from "../../actions/types";
-import { setActiveNavItem } from "../../actions";
+import { NavItemName } from "../../types";
 
-const NavItem = ({ itemName, activeNavItem, setActiveNavItem }: Props) => {
-  const isNavItemActive = activeNavItem === itemName;
+export const NavItem = ({
+  itemName,
+  currentNavItem,
+  sectionTop,
+  setCurrentNavItem
+}: Props) => {
+  const isNavItemActive = currentNavItem === itemName;
   const activeClass = isNavItemActive ? "active" : "";
 
-  // const setPageY = () => {
-  //   const sectionOffsetTop = currentSection ? currentSection.offsetTop : 0;
-  //   window.scrollTo({
-  //     top: sectionOffsetTop,
-  //     behavior: "smooth"
-  //   });
-  // };
+  const setPageY = (top: number) => {
+    window.scrollTo({
+      top: top,
+      behavior: "smooth"
+    });
+  };
 
-  const selectNavItem = () => {
+  const handleClickNavItem = (
+    itemName: NavItemName,
+    event: React.MouseEvent<HTMLElement>
+  ) => {
+    event.preventDefault();
+
     if (!isNavItemActive) {
-      // setPageY();
-      setActiveNavItem(itemName);
+      setCurrentNavItem(itemName);
+      setPageY(sectionTop);
     }
   };
 
@@ -30,7 +35,7 @@ const NavItem = ({ itemName, activeNavItem, setActiveNavItem }: Props) => {
       <a
         className={`nav-link btn btn-outline-primary ${styles.navItem} ${activeClass}`}
         href="/#"
-        onClick={selectNavItem}
+        onClick={e => handleClickNavItem(itemName, e)}
       >
         {itemName}
       </a>
@@ -38,29 +43,9 @@ const NavItem = ({ itemName, activeNavItem, setActiveNavItem }: Props) => {
   );
 };
 
-type Props = StateProps & DispatchProps & OwnProps;
-
-type StateProps = {
-  activeNavItem: NavItemName;
-};
-
-type OwnProps = {
+type Props = {
   itemName: NavItemName;
+  currentNavItem: NavItemName;
+  sectionTop: number;
+  setCurrentNavItem: (navItem: NavItemName) => void;
 };
-
-type DispatchProps = {
-  setActiveNavItem(navItem: NavItemName): void;
-};
-
-const mapState = (state: RootAppState) => ({
-  activeNavItem: state.navigation.activeNavItem
-});
-
-const mapDispatch = (dispatch: Dispatch<MenuActionTypes>, state: OwnProps) => {
-  return {
-    setActiveNavItem: (navItem: NavItemName) =>
-      dispatch(setActiveNavItem(navItem))
-  };
-};
-
-export default connect(mapState, mapDispatch)(NavItem);
