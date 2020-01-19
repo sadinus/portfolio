@@ -1,3 +1,58 @@
-.navContainer {
-  background-color: #bbb;
+:root {
+  --blue-color: #007bff;
+  --white-color: #fff;
+  --gray-color: #bbb;
+}
+
+.welcomeSection {
+  background-image: url("/codingLayout.jpg");
+  height: 100vh;
+}
+
+.welcomeWrapper {
+  display: block;
+  text-align: center;
+  color: var(--white-color);
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.welcomeImage {
+  overflow: hidden;
+  display: block;
+  width: 15em;
+  height: auto;
+  border-radius: 50%;
+}
+
+.welcomeTitle {
+  font-size: 1.5em;
+}
+
+.arrowButton {
+  background-color: tomato;
+  border: 5px double var(--white-color);
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  margin: 2em auto;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.arrowButton > * {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav {
+  background-color: var(--gray-color);
+  text-align: center;
+  position: sticky;
+  top: 0;
 }

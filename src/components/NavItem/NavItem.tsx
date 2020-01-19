@@ -1,22 +1,18 @@
 import React from "react";
 import styles from "./NavItem.module.css";
 import { NavItemName } from "../../types";
+import { setPageY } from "../../shared";
 
 export const NavItem = ({
   itemName,
   currentNavItem,
   sectionTop,
-  setCurrentNavItem
+  setCurrentNavItem,
+  navHeight
 }: Props) => {
   const isNavItemActive = currentNavItem === itemName;
   const activeClass = isNavItemActive ? "active" : "";
-
-  const setPageY = (top: number) => {
-    window.scrollTo({
-      top: top,
-      behavior: "smooth"
-    });
-  };
+  const sectionStart = sectionTop - navHeight;
 
   const handleClickNavItem = (
     itemName: NavItemName,
@@ -24,16 +20,14 @@ export const NavItem = ({
   ) => {
     event.preventDefault();
 
-    if (!isNavItemActive) {
-      setCurrentNavItem(itemName);
-      setPageY(sectionTop);
-    }
+    setCurrentNavItem(itemName);
+    setPageY(sectionStart);
   };
 
   return (
-    <div className="nav-item">
+    <div className={styles.navItem}>
       <a
-        className={`nav-link btn btn-outline-primary ${styles.navItem} ${activeClass}`}
+        className={`${styles.navLink} ${activeClass}`}
         href="/#"
         onClick={e => handleClickNavItem(itemName, e)}
       >
@@ -48,4 +42,5 @@ type Props = {
   currentNavItem: NavItemName;
   sectionTop: number;
   setCurrentNavItem: (navItem: NavItemName) => void;
+  navHeight: number;
 };

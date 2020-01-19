@@ -12,7 +12,7 @@ export const Section = ({
 
   React.useEffect(() => {
     setSectionTop(sectionRef.current?.offsetTop);
-  });
+  }, []);
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
